@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+  <Tracking>
+    <ImageTarget name="disco_freno_tarjeta" size="0.200000 0.197966" />
+    <ImageTarget name="piston_tarjeta" size="0.200000 0.197966" />
+  </Tracking>
+</QCARConfig>
