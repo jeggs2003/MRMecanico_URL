@@ -45,9 +45,11 @@ public class TouchRotationController : MonoBehaviour
                 float rotY = -delta.x * rotationSpeed;
                 float rotX = delta.y * rotationSpeed;
 
-                // Rota solo el modelo, no el Image Target
-                transform.Rotate(Vector3.up, rotY, Space.World);
-                transform.Rotate(Vector3.right, rotX, Space.World);
+                // Usa quaternions para evitar Gimbal Lock
+                Quaternion rotacionY = Quaternion.AngleAxis(rotY, Vector3.up);
+                Quaternion rotacionX = Quaternion.AngleAxis(rotX, Camera.main.transform.right);
+
+                transform.rotation = rotacionY * rotacionX * transform.rotation;
 
                 _lastTouchPos = touch.position;
             }
@@ -58,7 +60,7 @@ public class TouchRotationController : MonoBehaviour
             }
         }
 
-        // --- DOS DEDOS: Zoom ---
+        
         if (Input.touchCount == 2)
         {
             Touch t0 = Input.GetTouch(0);
@@ -71,12 +73,14 @@ public class TouchRotationController : MonoBehaviour
             float currDist = Vector2.Distance(t0.position, t1.position);
             float diff = currDist - prevDist;
 
-            float newScale = Mathf.Clamp(
-                transform.localScale.x + diff * zoomSpeed,
-                minScale,
-                maxScale
+            // Usa los mismos límites que ZoomController
+            float escalaActual = transform.localScale.x;
+            float nuevaEscala = Mathf.Clamp(
+                escalaActual + diff * 0.00005f,  // muy gradual
+                0.005f,   // escalaMinima
+                0.03f     // escalaMaxima
             );
-            transform.localScale = Vector3.one * newScale;
+            transform.localScale = Vector3.one * nuevaEscala;
         }
     }
 }

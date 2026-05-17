@@ -20,6 +20,10 @@ public class StateManager : MonoBehaviour
     public GameObject panelPrecio;     // Panel con precio en Q.
     public GameObject botonCorte;      // Botón para activar clipping
     public GameObject botonDesensamblar;
+    public GameObject botonCerrar;
+    public GameObject botonZoomIn;
+    public GameObject botonZoomOut;
+    public GameObject botonAutoRotacion;
 
     [Header("Referencias")]
     public ClippingPlaneController clippingController;
@@ -88,7 +92,10 @@ public class StateManager : MonoBehaviour
         if (panelPrecio != null) panelPrecio.SetActive(false);
         if (botonCorte != null) botonCorte.SetActive(false);
         if (botonDesensamblar != null) botonDesensamblar.SetActive(false); // en el ocultar todo
-        
+        if (botonCerrar != null) botonCerrar.SetActive(false);
+        if (botonAutoRotacion != null) botonAutoRotacion.SetActive(false);
+        if (botonZoomIn != null) botonZoomIn.SetActive(false);
+        if (botonZoomOut != null) botonZoomOut.SetActive(false);
 
         // Muestra solo lo que corresponde al estado
         switch (estadoActual)
@@ -100,14 +107,22 @@ public class StateManager : MonoBehaviour
             case EstadoPieza.Info:
                 if (panelInfo != null) panelInfo.SetActive(true);
                 if (botonCorte != null) botonCorte.SetActive(true);
-                if (botonDesensamblar != null) botonDesensamblar.SetActive(true); 
+                if (botonDesensamblar != null) botonDesensamblar.SetActive(true);
+                if (botonCerrar != null) botonCerrar.SetActive(true);
+                if (botonAutoRotacion != null) botonAutoRotacion.SetActive(true);
+                if (botonZoomIn != null) botonZoomIn.SetActive(true);
+                if (botonZoomOut != null) botonZoomOut.SetActive(true);
                 break;
 
             case EstadoPieza.Precio:
                 if (panelInfo != null) panelInfo.SetActive(true);
                 if (panelPrecio != null) panelPrecio.SetActive(true);
                 if (botonCorte != null) botonCorte.SetActive(true);
-                if (botonDesensamblar != null) botonDesensamblar.SetActive(true);  
+                if (botonDesensamblar != null) botonDesensamblar.SetActive(true);
+                if (botonCerrar != null) botonCerrar.SetActive(true);
+                if (botonAutoRotacion != null) botonAutoRotacion.SetActive(true);
+                if (botonZoomIn != null) botonZoomIn.SetActive(true);
+                if (botonZoomOut != null) botonZoomOut.SetActive(true);
                 break;
 
             case EstadoPieza.Clip:
@@ -163,5 +178,11 @@ public class StateManager : MonoBehaviour
         }
     }
 
- 
+    public void CerrarPanel()
+    {
+        AplicarEstado(EstadoPieza.Idle);
+        Debug.Log("[StateManager] Panel cerrado");
+    }
+
+
 }
