@@ -24,6 +24,7 @@ public class StateManager : MonoBehaviour
     public GameObject botonZoomIn;
     public GameObject botonZoomOut;
     public GameObject botonAutoRotacion;
+    public GameObject panelDesc;
 
     [Header("Referencias")]
     public ClippingPlaneController clippingController;
@@ -96,6 +97,8 @@ public class StateManager : MonoBehaviour
         if (botonAutoRotacion != null) botonAutoRotacion.SetActive(false);
         if (botonZoomIn != null) botonZoomIn.SetActive(false);
         if (botonZoomOut != null) botonZoomOut.SetActive(false);
+        if (panelDesc != null) panelDesc.SetActive(false);
+        
 
         // Muestra solo lo que corresponde al estado
         switch (estadoActual)
@@ -112,6 +115,7 @@ public class StateManager : MonoBehaviour
                 if (botonAutoRotacion != null) botonAutoRotacion.SetActive(true);
                 if (botonZoomIn != null) botonZoomIn.SetActive(true);
                 if (botonZoomOut != null) botonZoomOut.SetActive(true);
+                if (panelDesc != null) panelDesc.SetActive(true);
                 break;
 
             case EstadoPieza.Precio:
@@ -123,6 +127,7 @@ public class StateManager : MonoBehaviour
                 if (botonAutoRotacion != null) botonAutoRotacion.SetActive(true);
                 if (botonZoomIn != null) botonZoomIn.SetActive(true);
                 if (botonZoomOut != null) botonZoomOut.SetActive(true);
+                if (panelDesc != null) panelDesc.SetActive(true);
                 break;
 
             case EstadoPieza.Clip:
